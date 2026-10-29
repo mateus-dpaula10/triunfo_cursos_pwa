@@ -65,12 +65,24 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* Nada de rolagem horizontal. "clip" (e não "hidden") para não quebrar os
+     cabeçalhos/abas com position: sticky. */
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
   body {
     @apply bg-background text-foreground;
     -webkit-tap-highlight-color: transparent;
+    /* Texto longo sem espaço (link, CPF colado, enunciado) quebra em vez de estourar a largura */
+    overflow-wrap: break-word;
   }
   html {
     @apply font-sans;
+    /* Sem zoom por toque duplo */
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]) {

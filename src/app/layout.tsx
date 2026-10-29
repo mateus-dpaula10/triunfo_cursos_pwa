@@ -30,6 +30,9 @@ export const viewport: Viewport = {
   themeColor: "#ed6412",
   width: "device-width",
   initialScale: 1,
+  // App, não site: sem zoom de pinça nem de toque duplo.
+  maximumScale: 1,
+  userScalable: false,
   viewportFit: "cover",
 };
 

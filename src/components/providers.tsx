@@ -23,6 +23,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
       }),
   );
 
+  // O Safari do iPhone ignora user-scalable=no; bloqueia o gesto de pinça na mão.
+  useEffect(() => {
+    const block = (event: Event) => event.preventDefault();
+    document.addEventListener("gesturestart", block);
+    return () => document.removeEventListener("gesturestart", block);
+  }, []);
+
   // Service worker só em produção, pra não cachear o dev server.
   useEffect(() => {
     if (process.env.NODE_ENV !== "production" || !("serviceWorker" in navigator)) return;
